@@ -1,0 +1,11 @@
+/data
+
+/other/simdata
+/other/pytorch/data
+/other/pytorch/image
+/other/pytorch/runs
+/other/pytorch/*.pth
+
+/runs
+
+/*.bin
