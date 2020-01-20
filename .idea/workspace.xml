@@ -1,34 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="101c014e-d965-4662-8014-2c63bda92040" name="Default Changelist" comment="The first commit">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mypack.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/other.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FluidNet_2d4c.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FluidNet_2d4c_0.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FluidNet_2d4c_no_long.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lamda_0.00_1.00_0.00_0.00_bs_016.pth" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/gendata_simpleplume.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/000.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/001.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/002.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/003.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/004.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/005.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/pytorch/006.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/other/uniio.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/plume_2d4c.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train0_2d4c.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/train0_2d4c_nolong.py" afterDir="false" />
+    <list default="true" id="101c014e-d965-4662-8014-2c63bda92040" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/three_2d_net_configs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FluidNet_2d4c_no_long.py" beforeDir="false" afterPath="$PROJECT_DIR$/FluidNet_2d4c_no_long.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train0_2d4c_nolong.py" beforeDir="false" afterPath="$PROJECT_DIR$/train0_2d4c_nolong.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,12 +16,24 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/three_2d_net_configs.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/FluidNet_2d4c_no_long.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="62" column="55" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
+            <state relative-caret-position="300">
+              <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
+                <element signature="e#197#1136#0" />
+                <element signature="e#4037#4465#0" />
+                <element signature="e#4502#4799#0" />
               </folding>
             </state>
           </provider>
@@ -53,8 +42,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/train0_2d4c_nolong.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
+            <state relative-caret-position="-24">
+              <caret line="89" column="29" lean-forward="true" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -63,19 +52,56 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/plume_2d4c.py">
+        <entry file="file://$PROJECT_DIR$/FluidNet_2d4c.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="259">
-              <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+            <state relative-caret-position="595">
+              <caret line="243" column="19" lean-forward="true" selection-start-line="230" selection-end-line="243" selection-end-column="19" />
+              <folding>
+                <element signature="e#173#530#1" />
+                <element signature="e#614#1553#0" />
+                <element signature="e#656#1553#0" />
+                <element signature="e#1602#2487#0" />
+                <element signature="e#1676#1778#0" />
+                <element signature="e#1801#1914#0" />
+                <element signature="e#1945#2487#0" />
+                <element signature="e#2387#2487#0" />
+                <element signature="e#2543#4647#0" />
+                <element signature="e#2565#3042#0" />
+                <element signature="e#3085#3463#0" />
+                <element signature="e#3506#4647#0" />
+                <element signature="e#4677#5057#0" />
+                <element signature="e#4699#4731#0" />
+                <element signature="e#4813#5057#0" />
+                <element signature="e#5094#5391#0" />
+                <element signature="e#5116#5155#0" />
+                <element signature="e#5183#5391#0" />
+                <element signature="e#5393#5450#0" />
+                <element signature="e#5624#6519#0" />
+                <element signature="e#6521#6547#0" />
+                <element signature="e#6622#6823#0" />
+                <element signature="e#6825#6862#0" />
+                <element signature="e#7022#7422#0" />
+                <element signature="e#7424#7488#0" />
+                <element signature="e#7695#8598#0" />
+                <element signature="e#8600#8623#0" />
+                <element signature="e#8687#8878#0" />
+                <element signature="e#8880#8903#0" />
+                <element signature="e#8967#9158#0" />
+                <element signature="e#9160#9196#0" />
+                <element signature="e#9358#9894#0" />
+                <element signature="e#11313#11338#0" />
+                <element signature="e#11488#11852#0" />
+                <element signature="e#11929#13776#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/plume_2d4c.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+            <state relative-caret-position="326">
+              <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -103,10 +129,11 @@
       <list>
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/FluidNet_2d4c.py" />
-        <option value="$PROJECT_DIR$/train0_2d4c_nolong.py" />
-        <option value="$PROJECT_DIR$/FluidNet_2d4c_no_long.py" />
         <option value="$PROJECT_DIR$/plume_2d4c.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/train0_2d4c_nolong.py" />
+        <option value="$PROJECT_DIR$/three_2d_net_configs.txt" />
+        <option value="$PROJECT_DIR$/FluidNet_2d4c_no_long.py" />
       </list>
     </option>
   </component>
@@ -128,11 +155,6 @@
             <path>
               <item name="mypack" type="b2602c69:ProjectViewProjectNode" />
               <item name="mypack" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="mypack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="mypack" type="462c0819:PsiDirectoryNode" />
-              <item name="other" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -224,17 +246,34 @@
       <option name="presentableId" value="Default" />
       <updated>1579332670681</updated>
       <workItem from="1579332696571" duration="159000" />
-      <workItem from="1579332895947" duration="26991000" />
+      <workItem from="1579332895947" duration="39133000" />
     </task>
+    <task id="LOCAL-00001" summary="The first commit">
+      <created>1579491434685</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1579491434685</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27150000" />
+    <option name="totallyTimeSpent" value="39292000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2086331" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2086331" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
@@ -244,12 +283,12 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.2650862" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info active="true" anchor="bottom" id="TODO" order="6" visible="true" weight="0.32937366" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32937366" />
       <window_info anchor="bottom" id="Database Changes" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32937366" />
       <window_info anchor="bottom" id="Terminal" order="9" weight="0.87365013" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" order="11" weight="0.13900863" />
+      <window_info anchor="bottom" id="Python Console" order="11" weight="0.6285097" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -291,16 +330,6 @@
     <entry file="file://$PROJECT_DIR$/FluidNet_2d4c_0.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1008">
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/FluidNet_2d4c.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="628">
-          <caret line="120" column="4" lean-forward="true" selection-start-line="120" selection-start-column="4" selection-end-line="120" selection-end-column="4" />
           <folding>
             <element signature="e#0#34#0" expanded="true" />
           </folding>
@@ -375,30 +404,10 @@
         <state relative-caret-position="-1946" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FluidNet_2d4c_no_long.py">
+    <entry file="file://$PROJECT_DIR$/other/uniio.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="62" column="55" selection-start-line="62" selection-start-column="55" selection-end-line="62" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/train0_2d4c_nolong.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="66" column="24" lean-forward="true" selection-start-line="66" selection-start-column="24" selection-end-line="66" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#12#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/plume_2d4c.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="259">
-          <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+        <state relative-caret-position="21">
+          <caret line="168" column="10" selection-start-line="168" selection-start-column="10" selection-end-line="168" selection-end-column="10" />
         </state>
       </provider>
     </entry>
@@ -406,6 +415,87 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
           <caret line="10" column="6" lean-forward="true" selection-start-line="10" selection-start-column="6" selection-end-line="10" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/plume_2d4c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="107" column="43" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/three_2d_net_configs.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="13" column="6" lean-forward="true" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train0_2d4c_nolong.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-24">
+          <caret line="89" column="29" lean-forward="true" selection-start-line="89" selection-start-column="29" selection-end-line="89" selection-end-column="29" />
+          <folding>
+            <element signature="e#0#12#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FluidNet_2d4c.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="243" column="19" lean-forward="true" selection-start-line="230" selection-end-line="243" selection-end-column="19" />
+          <folding>
+            <element signature="e#173#530#1" />
+            <element signature="e#614#1553#0" />
+            <element signature="e#656#1553#0" />
+            <element signature="e#1602#2487#0" />
+            <element signature="e#1676#1778#0" />
+            <element signature="e#1801#1914#0" />
+            <element signature="e#1945#2487#0" />
+            <element signature="e#2387#2487#0" />
+            <element signature="e#2543#4647#0" />
+            <element signature="e#2565#3042#0" />
+            <element signature="e#3085#3463#0" />
+            <element signature="e#3506#4647#0" />
+            <element signature="e#4677#5057#0" />
+            <element signature="e#4699#4731#0" />
+            <element signature="e#4813#5057#0" />
+            <element signature="e#5094#5391#0" />
+            <element signature="e#5116#5155#0" />
+            <element signature="e#5183#5391#0" />
+            <element signature="e#5393#5450#0" />
+            <element signature="e#5624#6519#0" />
+            <element signature="e#6521#6547#0" />
+            <element signature="e#6622#6823#0" />
+            <element signature="e#6825#6862#0" />
+            <element signature="e#7022#7422#0" />
+            <element signature="e#7424#7488#0" />
+            <element signature="e#7695#8598#0" />
+            <element signature="e#8600#8623#0" />
+            <element signature="e#8687#8878#0" />
+            <element signature="e#8880#8903#0" />
+            <element signature="e#8967#9158#0" />
+            <element signature="e#9160#9196#0" />
+            <element signature="e#9358#9894#0" />
+            <element signature="e#11313#11338#0" />
+            <element signature="e#11488#11852#0" />
+            <element signature="e#11929#13776#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/FluidNet_2d4c_no_long.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="58" column="39" lean-forward="true" selection-start-line="58" selection-start-column="39" selection-end-line="58" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
+            <element signature="e#197#1136#0" />
+            <element signature="e#4037#4465#0" />
+            <element signature="e#4502#4799#0" />
+          </folding>
         </state>
       </provider>
     </entry>

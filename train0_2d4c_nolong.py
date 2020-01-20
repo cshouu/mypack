@@ -9,14 +9,39 @@ import time
 time_zero = time.time()
 time_last = time_zero
 writer = SummaryWriter('runs')
+
+# gpu
 use_gpu = torch.cuda.is_available()
 
+# config
+train_batch_size = 16
+test_batch_size = 16
+train_shuffle = True
+test_shuffle = False
+train_num_workers = 2
+test_num_workers = 2
+
 epoch = 0
+normalizeInputChan = torch.tensor(0) # 0:'UDiv' or 1:'pDiv' or 2:'div'
+# normalizeInputFunc = 'std'
+normalizeInputThrehsold = torch.tensor(0.00001)
+
+# data
+trainset = FluidNet_2d4c_no_long.VPGDdataset(isTrainset=True)
+trainloader = DataLoader(trainset, batch_size=train_batch_size, shuffle=train_shuffle, num_workers=train_num_workers)
+testset = FluidNet_2d4c_no_long.VPGDdataset(isTrainset=False)
+testloader = DataLoader(testset, batch_size=test_batch_size, shuffle=test_shuffle, num_workers=test_num_workers)
+
+# model
+presnet = FluidNet_2d4c_no_long.PressureNet()
+
+
+
+
 maxEpochs = 50 #5000
 optimal_epoch = 0
 optimal_test_loss = float('inf')
-train_batch_size = 16
-test_batch_size = 16
+
 
 lamda_ndiv = 0.0
 lamda_div = torch.tensor(1.0)
@@ -29,15 +54,11 @@ dt = 0.1
 dx = 1/128
 gravity = torch.tensor([0, -6e-4])
 
-trainset = FluidNet_2d4c_no_long.VPGDdataset(isTrainset=True)
-trainloader = DataLoader(trainset, batch_size=train_batch_size, shuffle=True, num_workers=2)
-testset = FluidNet_2d4c_no_long.VPGDdataset(isTrainset=False)
-testloader = DataLoader(testset, batch_size=test_batch_size, shuffle=False, num_workers=2)
 
 train_batch_total = math.ceil(len(trainset) / train_batch_size)
 test_batch_total = math.ceil(len(testset) / test_batch_size)
 
-presnet = FluidNet_2d4c_no_long.PressureNet()
+
 lossFunc = FluidNet_2d4c_no_long.LossFunc()
 if use_gpu:
 	presnet = presnet.cuda()
@@ -61,7 +82,7 @@ while epoch < maxEpochs:
 			data_batched['th_p'] = data_batched['th_p'].cuda()
 			data_batched['th_v'] = data_batched['th_v'].cuda()
 		optimizer.zero_grad()
-		pres, vel = presnet(data_batched['th_net_input'], data_batched['th_vx'], data_batched['th_gx'])
+		pres, vel = presnet(data_batched['th_net_input'], data_batched['th_vx'], data_batched['th_gx'], normalizeInputChan=normalizeInputChan, normalizeInputThrehsold=normalizeInputThrehsold)
 		loss = lossFunc(lamda_p=lamda_p, lamda_v=lamda_v, lamda_div=lamda_div, th_p=data_batched['th_p'], th_v=data_batched['th_v'], th_netp=pres, th_netv=vel)
 		loss.backward()
 		optimizer.step()
@@ -82,7 +103,7 @@ while epoch < maxEpochs:
 				lamda_div = lamda_div.cuda()
 				data_batched['th_p'] = data_batched['th_p'].cuda()
 				data_batched['th_v'] = data_batched['th_v'].cuda()
-			pres, vel = presnet(data_batched['th_net_input'], data_batched['th_vx'], data_batched['th_gx'])
+			pres, vel = presnet(data_batched['th_net_input'], data_batched['th_vx'], data_batched['th_gx'], normalizeInputChan=normalizeInputChan, normalizeInputThrehsold=normalizeInputThrehsold)
 			loss = lossFunc(lamda_p=lamda_p, lamda_v=lamda_v, lamda_div=lamda_div, th_p=data_batched['th_p'], th_v=data_batched['th_v'], th_netp=pres, th_netv=vel)
 			if use_gpu:
 				loss = loss.cpu()

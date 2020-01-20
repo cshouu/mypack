@@ -6,6 +6,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import Dataset
 
+
 def readbin(filename):
 	with open(filename,'rb') as bytestream:
 		Header = namedtuple('Header','transpose nx ny nz is_3d')
@@ -23,19 +24,23 @@ def readbin(filename):
 		th_dens = torch.from_numpy(np_dens)
 		return th_vel,th_pres,th_flag,th_dens
 
+
 class VPGDdataset(Dataset):
 	def __init__(self,isTrainset=True):
 		if isTrainset:
 			self.dataset = 'tr'
 		else:
 			self.dataset = 'te'
+
 	def __len__(self):
 		return 64*320
+
 	def __getitem__(self,idx):
 		idir = idx // 64
 		ifile = (idx % 64) * 4
 		th_vx,th_px,th_gx,th_dx = readbin('./data/%s/%06d/%06d_divergent.bin' % (self.dataset,idir,ifile))
 		th_v,th_p,_1,_2 = readbin('./data/%s/%06d/%06d.bin' % (self.dataset,idir,ifile))
+		# we may or may not concatenate the input tensor with the input pressure
 		th_net_input = torch.cat([torch.unsqueeze(th_vx[:,:,0],0), torch.unsqueeze(th_vx[:,:,1],0), torch.unsqueeze(th_px,0), torch.unsqueeze(th_gx.float(),0)])
 		return {'th_net_input':th_net_input, 'th_vx':th_vx,
 'th_gx':th_gx, 'th_dx':th_dx, 'th_v':th_v, 'th_p':th_p}
@@ -50,21 +55,30 @@ class PressureNet(nn.Module):
 		self.conv4 = nn.Conv2d(in_channels=16,out_channels=16,kernel_size=(3,3),padding=(1,1))
 		self.conv5 = nn.Conv2d(in_channels=16,out_channels=1,kernel_size=(1,1),padding=(0,0))
 
-	def forward(self, x, vel_div, flags):
+	def forward(self, x, vel_div, flags, normalizeInputChan, normalizeInputThrehsold):
+		self.setWallBcs(flags, vel_div)
+		# tfluids.FlagsToOccupancy() will create a [0, 1] grid out of the Manta flags : 1->0,2->1
+		x[3, :, :] = x[3, :, :] - 1
 		# scale
-		std = torch.std(x[:,:2,:,:].view(x.shape[0],-1))
-		scale = torch.clamp(std, 0.00001, float('inf'))
+		if normalizeInputChan == 0:
+			scale_temp = x[:,:2,:,:].view(x.shape[0],-1)
+		elif normalizeInputChan == 1:
+			scale_temp = x[:, 2, :, :].view(x.shape[0], -1)
+		std = torch.std(scale_temp)
+		scale = torch.clamp(std, normalizeInputThrehsold, float('inf'))
 		x[:,:3,:,:] /= scale
 		# forward
 		x = F.relu(self.conv1(x))
 		x = F.relu(self.conv2(x))
 		x = F.relu(self.conv3(x))
 		x = F.relu(self.conv4(x))
-		p_pred = torch.squeeze(F.relu(self.conv5(x)), 1)
-		# reverse scale
+		p_pred = torch.squeeze(self.conv5(x), 1)
 		v_pred = self.correctVel(flags, vel_div, p_pred)
+		# reverse scale
 		p_pred *= scale
 		v_pred *= scale
+
+
 		return p_pred, v_pred
 
 	def correctVel(self, flags, vel, pressure):
@@ -76,6 +90,21 @@ class PressureNet(nn.Module):
 		vel_corrected[:,1:-1,1:-1,0] = ((flags[:,1:-1,1:-1]&4!=0)*~(flags[:,1:-1,1:-1]&16!=0)) * ((flags[:,1:-1,:-2]&1!=0) * (vel_corrected[:,1:-1,1:-1,0] + pressure[:,1:-1,:-2]) + (flags[:,1:-1,:-2]&1==0) * 0.0) + ((flags[:,1:-1,1:-1]&4==0)+(flags[:,1:-1,1:-1]&16!=0)>0) * vel_corrected[:,1:-1,1:-1,0]
 		vel_corrected[:,1:-1,1:-1,1] = ((flags[:,1:-1,1:-1]&4!=0)*~(flags[:,1:-1,1:-1]&16!=0)) * ((flags[:,:-2,1:-1]&1!=0) * (vel_corrected[:,1:-1,1:-1,1] + pressure[:,:-2,1:-1]) + (flags[:,:-2,1:-1]&1==0) * 0.0) + ((flags[:,1:-1,1:-1]&4==0)+(flags[:,1:-1,1:-1]&16!=0)>0) * vel_corrected[:,1:-1,1:-1,1]
 		return vel_corrected
+
+	# mantaflow setWallBcs()
+	# set obstacle boundary conditions
+	# ! set no-stick wall boundary condition between ob/fl and ob/ob cells
+	def setWallBcs(flags, vel):
+		vel_next = vel.clone()
+		vel_next[:,1:,0] = (((flags[:,1:]&1!=0)+(flags[:,1:]&2!=0))>0) * (flags[:,:-1]&2!=0) * 0.0 + ((flags[:,1:]&1==0) * (flags[:,1:]&2==0)+(flags[:,:-1]&2==0)>0) * vel_next[:,1:,0]
+		vel_next[:,1:,0] = (flags[:,1:]&2!=0)*(flags[:,:-1]&1!=0) * 0.0 + (((flags[:,1:]&2==0)+(flags[:,:-1]&1==0))>0) * vel_next[:,1:,0]
+		vel_next[1:,:,1] = (((flags[1:,:]&1!=0)+(flags[1:,:]&2!=0))>0) * (flags[:-1,:]&2!=0) * 0.0 + ((flags[1:,:]&1==0) * (flags[1:,:]&2==0)+(flags[:-1,:]&2==0)>0) * vel_next[1:,:,1]
+		vel_next[1:,:,1] = (flags[1:,:]&2!=0)*(flags[:-1,:]&1!=0) * 0.0 + (((flags[1:,:]&2==0)+(flags[:-1,:]&1==0))>0) * vel_next[1:,:,1]
+		vel_next[:,1:,1] = (flags[:,1:]&1!=0)*(flags[:,:-1]&64!=0) * 0.0 + (((flags[:,1:]&1==0)+(flags[:,:-1]&64==0))>0) * vel_next[:,1:,1]
+		vel_next[:,:-1,1] = (flags[:,:-1]&1!=0)*(flags[:,1:]&64!=0) * 0.0 + (((flags[:,:-1]&1==0)+(flags[:,1:]&64==0))>0) * vel_next[:,:-1,1]
+		vel_next[1:,:,0] = (flags[1:,:]&1!=0)*(flags[:-1,:]&64!=0) * 0.0 + (((flags[1:,:]&1==0)+(flags[:-1,:]&64==0))>0) * vel_next[1:,:,0]
+		vel_next[:-1,:,0] = (flags[:-1,:]&1!=0)*(flags[1:,:]&64!=0) * 0.0 + (((flags[:-1,:]&1==0)+(flags[1:,:]&64==0))>0) * vel_next[:-1,:,0]
+		return vel_next
 
 
 class LossFunc(nn.Module):
