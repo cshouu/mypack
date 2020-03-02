@@ -1,0 +1,1 @@
+{"modelType": "default", "normalizeInputChan": 0, "normalizeInputThreshold": 1e-05, "maxEpochs": 60, "batch_size": 16, "lamda_ndiv": 0.0, "lamda_div": 0.6, "lamda_p": 0.2, "lamda_v": 0.2, "optimal_epoch": 17, "optimal_avg_train_loss": 7870.640190410614, "optimal_avg_test_loss": 9135.355097728967}
